@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>خدمات التمريض المنزلي</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {direction: rtl; text-align: right; background:#f8f9fa;}
+header {background:#1e88e5; color:white; padding:30px 0; text-align:center;}
+.card {margin-bottom:20px;}
+footer {background:#1e88e5; color:white; padding:20px; text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>خدمات التمريض المنزلي</h1>
+<p>رعاية صحية في منزلك بكل أمان</p>
+</header>
+
+<div class="container my-5">
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">كشف طبي منزلي</h5>
+        <p class="card-text">زيارة الطبيب لمتابعة حالتك الصحية في المنزل.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">حقن ومحاليل</h5>
+        <p class="card-text">خدمات الحقن وتركيب المحاليل للمريض في البيت.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">رعاية مرضى وكبار السن</h5>
+        <p class="card-text">متابعة يومية ورعاية خاصة لكبار السن أو المرضى.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="my-4 text-center">اطلب زيارتك الآن</h2>
+<form id="visitForm" class="mx-auto" style="max-width:500px;">
+  <div class="mb-3">
+    <input type="text" class="form-control" name="name" placeholder="الاسم" required>
+  </div>
+  <div class="mb-3">
+    <input type="tel" class="form-control" name="phone" placeholder="رقم الهاتف" required>
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="address" placeholder="العنوان" required>
+  </div>
+  <div class="mb-3">
+    <select class="form-select" name="service" required>
+      <option value="">اختر نوع الخدمة</option>
+      <option value="كشف طبي">كشف طبي</option>
+      <option value="حقن">حقن / محاليل</option>
+      <option value="رعاية">رعاية مرضى</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <input type="datetime-local" class="form-control" name="time" required>
+  </div>
+  <button type="submit" class="btn btn-primary w-100">إرسال الطلب</button>
+</form>
+</div>
+
+<footer>
+<p>حقوق الملكية © 2025</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
