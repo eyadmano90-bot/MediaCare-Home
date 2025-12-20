@@ -4,33 +4,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Media Care Home</title>
+
+<meta name="description" content="Media Care Home منصة خدمات التمريض المنزلي مع حساب تكلفة تلقائي وإشعارات ومراجعات العملاء.">
+<meta name="keywords" content="تمريض منزلي, رعاية صحية, كشف طبي, حقن, رعاية مرضى, Media Care Home">
+<meta name="author" content="Eyad Hub">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 body {
-  direction: rtl;
-  text-align: right;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('https://i.postimg.cc/VN4tBnXf/la.jpg') no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px;
+    direction: rtl;
+    text-align: right;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://i.postimg.cc/VN4tBnXf/la.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 20px;
 }
 .container {
-  background: rgba(255,255,255,0.95);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  border: 1px solid #ddd;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
 }
-header { background: rgba(255,255,255,0.9); padding: 20px 0; text-align:center; border-radius:20px; margin-bottom:30px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-header img { position:absolute; left:20px; top:10px; height:60px;}
-header h1 { margin:0; font-weight:bold; color:#333;}
-header p { margin:0; color:#666;}
-.card { margin-bottom:20px; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.2); color:white; background-size:cover; background-position:center; height:250px; display:flex; align-items:flex-end; padding:15px; font-weight:bold; text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
-.card:hover { transform: scale(1.05);}
-footer { background: rgba(255,255,255,0.9); color:#333; padding:20px; text-align:center; border-radius:20px; margin-top:30px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.success { display:none; color:green; font-weight:bold; text-align:center; margin-top:10px;}
-.btn-custom { background:#007bff; color:white; border-radius:12px; font-weight:bold;}
+header {
+    background: rgba(255,255,255,0.9);
+    padding: 20px 0;
+    text-align:center;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+header img {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    height: 60px;
+}
+header h1 {margin:0; font-weight:bold; color:#333;}
+header p {margin:0; color:#666;}
+.card {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    transition: transform 0.3s;
+}
+.card:hover { transform: scale(1.05); }
+footer {
+    background: rgba(255,255,255,0.9);
+    color:#333;
+    padding:20px;
+    text-align:center;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.success {
+    display:none;
+    color:green;
+    font-weight:bold;
+    text-align:center;
+    margin-top:10px;
+}
+.btn-custom {
+    background:#007bff;
+    color:white;
+    border-radius:12px;
+    font-weight:bold;
+}
 .btn-custom:hover {background:#0056b3;}
+.summary-box {
+    background:#f1f1f1; padding:15px; border-radius:15px; margin-top:20px;
+}
 </style>
 </head>
 <body>
@@ -55,54 +111,101 @@ footer { background: rgba(255,255,255,0.9); color:#333; padding:20px; text-align
 </div>
 
 <h2 class="my-4 text-center">اطلب زيارتك الآن</h2>
+
 <form id="visitForm" class="mx-auto" style="max-width:500px;">
   <div class="mb-3"><input type="text" class="form-control" id="name" placeholder="الاسم" required></div>
   <div class="mb-3"><input type="tel" class="form-control" id="phone" placeholder="رقم الهاتف" required></div>
-  <div class="mb-3"><input type="text" class="form-control" id="address" placeholder="العنوان" required></div>
+
   <div class="mb-3">
-    <select class="form-select" id="service" required>
-      <option value="">اختر نوع الخدمة</option>
-      <option value="كشف طبي">كشف طبي</option>
-      <option value="حقن">حقن / محاليل</option>
-      <option value="رعاية">رعاية مرضى</option>
-    </select>
+    <input type="text" class="form-control" id="address" placeholder="العنوان" required>
   </div>
-  <div class="mb-3"><input type="datetime-local" class="form-control" id="time" required></div>
+
+  <div class="mb-3">
+    <label>اختر الخدمات:</label><br>
+    <div class="form-check">
+      <input class="form-check-input service-check" type="checkbox" value="كشف طبي" id="srv1" data-price="150">
+      <label class="form-check-label" for="srv1">كشف طبي (150 جنيه)</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input service-check" type="checkbox" value="حقن / محاليل" id="srv2" data-price="100">
+      <label class="form-check-label" for="srv2">حقن / محاليل (100 جنيه)</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input service-check" type="checkbox" value="رعاية مرضى" id="srv3" data-price="200">
+      <label class="form-check-label" for="srv3">رعاية مرضى (200 جنيه)</label>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input type="datetime-local" class="form-control" id="time" required>
+  </div>
+
+  <p><strong>السعر الإجمالي: <span id="totalPrice">0</span> جنيه</strong></p>
+
   <button type="button" class="btn btn-custom w-100" onclick="sendOrder()">إرسال الطلب</button>
   <div class="success" id="successMsg">تم إرسال الطلب بنجاح! سيتم التواصل معك قريبًا.</div>
 </form>
-</div>
+
+<div class="summary-box" id="summaryBox" style="display:none;"></div>
 
 <footer>
 <p>حقوق الملكية © 2025 – شركة Eyad Hub</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+// حساب السعر
+const serviceChecks = document.querySelectorAll(".service-check");
+const totalPriceEl = document.getElementById("totalPrice");
+serviceChecks.forEach(cb => {
+  cb.addEventListener("change", () => {
+    let total = 0;
+    serviceChecks.forEach(c => { if(c.checked) total += Number(c.dataset.price); });
+    totalPriceEl.textContent = total;
+  });
+});
+
 function sendOrder() {
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
   const address = document.getElementById("address").value;
-  const service = document.getElementById("service").value;
   const time = document.getElementById("time").value;
-  
-  if (!name || !phone || !address || !service || !time) {
-    alert("من فضلك أكمل كل الحقول المطلوبة");
+
+  const selectedServices = [];
+  serviceChecks.forEach(c => { if(c.checked) selectedServices.push(c.value); });
+
+  if(!name || !phone || !address || !time || selectedServices.length===0){
+    alert("من فضلك أكمل كل الحقول المطلوبة واختر خدمة واحدة على الأقل");
     return;
   }
 
+  const totalPrice = totalPriceEl.textContent;
+
+  // عرض ملخص الطلب
+  const summaryBox = document.getElementById("summaryBox");
+  summaryBox.style.display = "block";
+  summaryBox.innerHTML = `<h5>ملخص الطلب:</h5>
+    <p>الاسم: ${name}</p>
+    <p>الهاتف: ${phone}</p>
+    <p>العنوان: ${address}</p>
+    <p>الخدمات: ${selectedServices.join(", ")}</p>
+    <p>ميعاد الزيارة: ${time}</p>
+    <p>السعر الإجمالي: ${totalPrice} جنيه</p>`;
+
+  // إرسال الطلب للجروب على Telegram
   const botToken = "8333713857:AAELpKcIQu47ohk7vsBo6SUOBR_3E7C8qAY";
   const chatId = "-1003041511786";
 
-  const message = `طلب زيارة تمريض منزلي جديد\n\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}\nالخدمة: ${service}\nميعاد الزيارة: ${time}\n\n⚠️ على الممرض الذي سيتولى الحالة كتابة (تم) في الجروب`;
+  const message = `طلب زيارة جديد\n\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}\nالخدمات: ${selectedServices.join(", ")}\nميعاد الزيارة: ${time}\nالسعر الإجمالي: ${totalPrice} جنيه\n\n⚠️ على الممرض كتابة (تم) عند الموافقة`;
 
   fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
-  .then(() => {
-    document.getElementById("successMsg").style.display = "block";
-    document.getElementById("visitForm").reset();
-  })
-  .catch(() => alert("حدث خطأ، حاول مرة أخرى."));
+    .then(() => {
+      document.getElementById("successMsg").style.display = "block";
+      document.getElementById("visitForm").reset();
+      totalPriceEl.textContent = 0;
+    })
+    .catch(() => { alert("حدث خطأ، حاول مرة أخرى."); });
 }
 </script>
-
 </body>
 </html>
